@@ -1,0 +1,61 @@
+// Mixin utiles
+
+// [calculateRem | Convert px to rem]
+// @param  {[int]} $size [Size in pixel to convert in rem]
+// @return {[int]}       [Size in rem]
+@function calculateRem($size)
+    $remSize: $size / 16px
+    @return $remSize * 1rem
+
+// Si $ie est à true, IE est supporté, si $ie est à false IE n'est pas supporté
+=fontSize($ie, $size: 16px)
+    @if ($ie == true)
+        font-size: $size
+        font-size: calculateRem($size)
+    @else
+        font-size: calculateRem($size)
+
+// [font Mixin font shorthand]
+// @param  {[bool]} $ie                   [Si true IE est supporté, si false IE n'est pas supporté]
+// @param  {[int/string]} $font-weight   [Font-weight]
+// @param  {[int]} $font-size            [Font-size en PX, convertit en REM]
+// @param  {[int]} $line                 [Line Height, en PX convertit en REM]
+// @param  {[string]} $family            [Font-family]
+// @param  {[string]} $other             [Font-family fallback]
+// ----------
+// Comment l'utiliser :
+// +font(false, font-weight, font-size, line-height, font-family First, font-family Fallback)
+// Si ie est à true, IE est supporté, sinon c'est la version font shorthand qui est renvoyé
+=font($ie, $font-weight: 'normal', $font-size: 16px, $line: 16px, $family: sans-serif, $other: sans-serif)
+        @if ($ie == true)
+            // IE Fallback - Conditional
+            font-size: $font-size
+            line-height: $line
+            font-size: calculateRem($font-size)
+            line-height: calculateRem($line)
+            font-weight: $font-weight
+            font-family: $family, $other
+        @else
+            font: $font-weight #{calculateRem($font-size)}/#{calculateRem($line)} $family, $other
+
+
+
+// Opacity with IE fallback
+=opacity($opacity)
+    opacity: $opacity
+    // IE 8
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity * 100})"
+    // IE 5-7
+    filter: alpha(opacity=$opacity * 100)
+
+
+// Example advanced
+// $list: adam john wynn mason kuroir
+//
+// =author-images
+//   @each $author in $list
+//     .photo-#{$author}
+//       background: image-url("avatars/#{$author}.png") no-repeat
+//
+// .author-bio
+//   +author-images

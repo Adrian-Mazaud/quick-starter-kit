@@ -1,0 +1,6 @@
+﻿	Contact: 
+	From: 
+	Last update: 
+	Language: Français
+	Doctype: HTML5
+	IDE: Atom <3

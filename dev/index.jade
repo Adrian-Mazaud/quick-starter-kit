@@ -1,0 +1,41 @@
+doctype html
+html(lang="fr")
+    head
+    meta(charset='utf8')
+    title= "Todo List ECMAScript 6"
+    meta(description= "Démo Todo List with coffescript jade and sass, and respectfull ECMAScript 6 convention")
+    link(rel="stylesheet", href="assets/css/screen.css")
+    body
+        section(class='demo' id='demo')
+            div(class='container')
+                div(class='todolist')
+                    h1 Todolist
+                    form(action="#" class='todo-form' id="todoForm")
+                        table(class='todo-table')
+                            thead
+                                tr
+                                    th #ID
+                                    th Task
+                                    th Hours
+                                    th Done
+                            tbody
+                                tr
+                                    td #1
+                                    td 
+                                        input(type="text" value='Faire la vaisselle' onclick='select()')
+                                    td 12h38
+                                    td 
+                                        input(type='checkbox')
+                                tr
+                                    td Hello
+                                    td Hello
+                                    td Hello
+                                    td 
+                                        input(type='checkbox')
+                                    
+            
+        
+    //- Libs Js
+    script(type='text/javascript' src='app/lib/dynamics.min.js')
+    //- App
+    script(type='text/javascript' src='app/client.js')

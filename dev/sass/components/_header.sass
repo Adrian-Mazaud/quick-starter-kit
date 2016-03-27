@@ -1,0 +1,23 @@
+$headerHeight : 150px
+
+header
+    width: 100%
+    margin: 0 0 25px
+    height: $headerHeight
+    background: $grey
+    box-shadow: 0 10px 0 rgba(0, 0, 0, 0.2)
+
+    .wrap
+        height: 100%
+
+    a.logo
+        +grid-column(2,0)
+        display: block
+        height: 70%
+
+        transform: translateY(15%)
+
+    img
+        display: block
+        margin: 0 auto
+        height: 100%

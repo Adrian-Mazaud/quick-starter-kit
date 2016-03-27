@@ -1,0 +1,30 @@
+*,*::after, *::before, html, body
+    box-sizing: border-box
+
+html, body
+    margin: 0
+    padding: 0
+
+body
+    background: $greylighten
+    color: $grey
+a
+    text-decoration: none
+
+.cf::after
+    content: ''
+    display: table
+    clear: both
+
+.link-hide
+    display: none
+
+.wrap
+    +grid-row
+
+/**
+ * For demo
+ */
+
+.content
+    min-height: 80vh

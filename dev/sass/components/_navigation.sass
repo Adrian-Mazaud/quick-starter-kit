@@ -1,0 +1,30 @@
+nav.primary
+    +grid-column(10,0)
+
+    ul
+        margin: 0
+        padding: 0
+        list-style: none
+        text-align: right
+        // line-height: 100px
+        line-height: $headerHeight
+
+    li
+        display: inline-block
+        margin: 0 10px
+        +font(false, 100, 20px, 16px, $robotothin)
+
+    li.is-current
+        a
+            color: #FFF
+
+    a
+        padding: 20px
+        // display: block
+        width: 100%
+        height: 100%
+
+        transition: color .1s ease-in-out
+
+        &:hover
+            color: $greylighten
