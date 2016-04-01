@@ -6,6 +6,7 @@ Contenu :
 * Gulp
 * Foundation V6
 * Sass (.sass)
+* Dynamics.js
 
 En option :
 * Jade

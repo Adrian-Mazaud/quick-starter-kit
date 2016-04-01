@@ -8,11 +8,17 @@ var coffee = require('gulp-coffee');
 var jade = require('gulp-jade');
 
 /**
- * Gulpfile Spécial pour mes démos !! ;)
+ * Table of Contents
+ * 1. folders {Object}      | Objet regroupant toutes les routes vers les fichiers à piper.
+ * 2. Tâches basiques       | Tâches actives par défaut
+ * 3. Tâches en options     | Tâches en options qui ne sont pas actives par défaut
+ * 	  3.1. Jade
+ * 	  3.2. Coffee
+ * 4. Tâche 'live'          | Regoupe toutes les tâches watch de Gulp
  */
 
 /**
-    * --------------------------
+    * 1. folders --------------------------
     * [folders | relative path for foldersss | D means destination]
     * @type {Object}
     * --------------------------
@@ -46,11 +52,10 @@ var folders = {
 
         fonts: 'dev/fonts/**/*.*',
         fontsD: 'dist/assets/fonts/',
-
-}
+};
 
 /**
-    * --------------------------
+    * 2. Tâches par défaut --------------------------
     * Tasks
     * --------------------------
  */
@@ -81,53 +86,35 @@ gulp.task('compress', function(){
         .pipe(gulp.dest(folders.jsD));
 });
 
-gulp.task('racine', function(){
-    return gulp.src(['dev/.htaccess', 'dev/robots.txt', 'dev/humans.txt', 'dev/favicon.ico'])
-        .pipe(gulp.dest('dist/'))
+/** [Html - Copie tous les .html depuis Dev vers Dist] */
+gulp.task('html', function(){
+    return gulp.src(folders.html)
+    .pipe(gulp.dest(folders.htmlD));
 });
 
-
-/** [copyjs - Compress Javascripts] */
+/** [copyjs - Copie simpletement les fichiers Javascripts depuis le dossier Dev vers le dossier Dist] */
 gulp.task('copyjs', function(){
     return gulp.src(folders.js)
-        .pipe(gulp.dest(folders.jsD));
-});
-
-/** [Jade - Convert jade to html and past to dist folder] */
-gulp.task('jade', function(){
-    return gulp.src(folders.jade)
-        .pipe(jade({pretty: true}))
-        .pipe(gulp.dest(folders.jadeD));
-});
-
-/** [Coffee - Convert coffee to js and past to dist folder] */
-gulp.task('coffee', function(){
-    return gulp.src(folders.coffee)
-        .pipe(coffee({bare: true}))
-        .pipe(gulp.dest(folders.jsD));
+    .pipe(gulp.dest(folders.jsD));
 });
 
 /** [copyjsvendor - Permet de copier toutes les librairies JS depuis Dev to Dist] */
 gulp.task('copyjslib', function(){
     return gulp.src(folders.jsLib)
-        .pipe(gulp.dest(folders.jsLibD));
+    .pipe(gulp.dest(folders.jsLibD));
 });
 
-gulp.task('javascript', function(){
-    return gulp.src(folders.js)
-        .pipe(gulp.dest(folders.jsD));
-});
-
-/** [Html - Copie tous les .html depuis Dev vers Dist] */
-gulp.task('html', function(){
-    return gulp.src(folders.html)
-        .pipe(gulp.dest(folders.htmlD));
-});
 
 /** [Json - Copie tous les .JSON depuis Dev vers Dist] */
 gulp.task('json', function(){
     return gulp.src(folders.json)
-        .pipe(gulp.dest(folders.jsonD));
+    .pipe(gulp.dest(folders.jsonD));
+});
+
+/** [racine | Permet de copier les quelques fichiers à la racine] */
+gulp.task('racine', function(){
+    return gulp.src(['dev/.htaccess', 'dev/robots.txt', 'dev/humans.txt', 'dev/favicon.ico'])
+        .pipe(gulp.dest('dist/'))
 });
 
 /** [images - Copie toutes les images dans le folder dist] */
@@ -142,30 +129,54 @@ gulp.task('fonts', function(){
         .pipe(gulp.dest(folders.fontsD));
 });
 
+/**
+ * 3.1 [Option] ----------------------------------------------------------
+ * Jade
+ * ----------------------------------------------------------
+ */
+
+/** [Jade - Convert jade to html and past to dist folder] */
+gulp.task('jade', function(){
+    return gulp.src(folders.jade)
+        .pipe(jade({pretty: true}))
+        .pipe(gulp.dest(folders.jadeD));
+});
+
+/**
+ * 3.2 [Option] ----------------------------------------------------------
+ * Coffee
+ * ----------------------------------------------------------
+ */
+
+/** [Coffee - Convert coffee to js and past to dist folder] */
+gulp.task('coffee', function(){
+    return gulp.src(folders.coffee)
+        .pipe(coffee({bare: true}))
+        .pipe(gulp.dest(folders.jsD));
+});
 
 
 
 /**
-    * --------------------------
+    * 4. Tâche Live --------------------------
     * Watching Tasks
     *  - La tache 'live' permet de regrouper différentes tâches watch en une seule et unique,
     *  ainsi que de renvoyer dans la console, un log avec l'heure de modif
     *  de chaque fichier ainsi que les possibles erreurs.
-    *
-    *  Elle est surtout destinée pour la modification du code
-    *  pas pour des assets, tel que les images, svg, ou vendors,
-    *  ce qui la rendrait bien plus lente et moins performante.
+
+    *  /!\ L'affichage des erreurs ne marche pas avec tous les modules de Gulp,
+    *  pour certains il faut installer manuellement d'autres modules
     * --------------------------
  */
 
-gulp.task('live', ['sass', 'html', 'javascript'], function(){
+gulp.task('live', ['sass', 'html', 'copyjs'], function(){
     gulp.watch(folders.sass, ['sass']).on('change', function(event){
         console.log('Le fichier :' + event.path  + ' a ete modifie !')
     });
     gulp.watch(folders.html, ['html']).on('change', function(event){
         console.log('Le fichier :' + event.path + ' a ete modifie !')
     });
-    gulp.watch(folders.js, ['javascript']).on('change', function(event){
+    gulp.watch(folders.js, ['copyjs']).on('change', function(event){
         console.log('Le fichier :' + event.path + ' a ete modifie !')
     });
 });

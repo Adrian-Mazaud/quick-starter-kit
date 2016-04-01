@@ -1,0 +1,19 @@
+//- navlink - Permet de renvoyer li et a imbriqué avec quelques arguments.
+//- current {bool} - Permet de retourner un li class active
+//- href {string} - href du lien
+//- content {string} - Texte afficher du lien
+//- title {string} - OPTIONNEL, Si renseigné le title sera inséré
+mixin navlink(current, href, content, title)
+    if current
+        li(class='is-current')
+            if title 
+                a(href='#{href}', title='#{title}')= content
+            else
+                a(href='#{href}')= content
+                
+    else
+        li
+            if title 
+                a(href='#{href}', title='#{title}')= content
+            else
+                a(href='#{href}')= content
