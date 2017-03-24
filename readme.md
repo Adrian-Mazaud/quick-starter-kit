@@ -1,6 +1,4 @@
-<p align="center">
 ![alt](http://media.giphy.com/media/RRerwvHrb0nxm/giphy.gif)
-<p>
 
 # Starter Kit
 
