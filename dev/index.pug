@@ -1,14 +1,14 @@
-//- Import des mixins
-include includes_jade/mixins
 //- Layout de base
-extends includes_jade/layout
+extends includes_pug/layout
+//- Import des mixins
+include includes_pug/mixins
 
 //- Titre de la page
 block title
     title Titre de la page
 
 //- Meta description
-block description
+block meta
     meta(name='description', content='Exemple de description')
 
 block content
@@ -21,13 +21,12 @@ block content
                     +navlink(true, '#', 'Nav_1', 'Title_Nav_1')
                     +navlink(false, '#', 'Nav_2', 'Title_Nav_2')
                     +navlink(false, '#', 'Nav_3', 'Title_Nav_3')
-    
+
     section(class='content')
         div(class='wrap')
-        
-        
+
     footer
         div(class='wrap')
-    
+
 block scripts
-    script(src="app/client.js")
+    script(src="app/app.min.js")

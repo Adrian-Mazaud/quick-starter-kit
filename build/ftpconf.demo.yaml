@@ -1,0 +1,5 @@
+host: 'ftp.mydomain.net'
+user: 'username'
+password: 'password'
+port: 21
+remote: "/www/.../"

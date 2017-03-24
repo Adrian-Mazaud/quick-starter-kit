@@ -1,14 +1,5 @@
-// Mixin utiles
-
-// [calculateRem | Convert px to rem]
-// @param  {[int]} $size [Size in pixel to convert in rem]
-// @return {[int]}       [Size in rem]
-@function calculateRem($size)
-    $remSize: $size / 16px
-    @return $remSize * 1rem
-
 // Si $ie est à true, IE est supporté, si $ie est à false IE n'est pas supporté
-=fontSize($ie, $size: 16px)
+=fontSize($size: 16px, $ie: false)
     @if ($ie == true)
         font-size: $size
         font-size: calculateRem($size)
@@ -26,7 +17,7 @@
 // Comment l'utiliser :
 // +font(false, font-weight, font-size, line-height, font-family First, font-family Fallback)
 // Si ie est à true, IE est supporté, sinon c'est la version font shorthand qui est renvoyé
-=font($ie, $font-weight: 'normal', $font-size: 16px, $line: 16px, $family: sans-serif, $other: sans-serif)
+=font($font-weight: 'normal', $font-size: 16px, $line: 16px, $family: sans-serif, $other: sans-serif, $ie: false)
         @if ($ie == true)
             // IE Fallback - Conditional
             font-size: $font-size
@@ -37,7 +28,6 @@
             font-family: $family, $other
         @else
             font: $font-weight #{calculateRem($font-size)}/#{calculateRem($line)} $family, $other
-
 
 
 // Opacity with IE fallback

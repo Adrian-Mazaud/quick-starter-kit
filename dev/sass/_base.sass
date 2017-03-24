@@ -1,9 +1,14 @@
 *,*::after, *::before, html, body
     box-sizing: border-box
 
+html
+    font-size: $rootSize
+
+
 html, body
     margin: 0
     padding: 0
+
 
 body
     background: $greylighten
@@ -22,9 +27,6 @@ a
 .wrap
     +grid-row
 
-/**
- * For demo
- */
-
+// FIXME For demo..
 .content
-    min-height: 80vh
+    min-height: 45vh
