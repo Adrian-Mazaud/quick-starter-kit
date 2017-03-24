@@ -1,5 +1,5 @@
 <p align="center">
-![](https://media.giphy.com/media/RRerwvHrb0nxm/giphy.gif)
+![alt](https://media.giphy.com/media/RRerwvHrb0nxm/giphy.gif)
 <p>
 
 # Starter Kit
