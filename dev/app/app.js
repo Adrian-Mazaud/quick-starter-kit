@@ -1,9 +1,11 @@
-// 'use strict';
+var Vue = require('vue');
+var App = require('./app.vue');
 
-// var dynamics = require('dynamics.js')
+window.app = new Vue({
+    el: '#app',
+    render: function (createElement) {
+        return createElement(App)
+    }
+})
 
-MyComponent = {
-    msg: 'Hello world'
-}
-
-console.log(MyComponent.msg)
+console.log(app)

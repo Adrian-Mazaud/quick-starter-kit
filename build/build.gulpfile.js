@@ -105,7 +105,7 @@ gulp.task('compress', function() {
 /** [Icons - Copy Icons from Dev to Dist] */
 gulp.task('images', function(){
     return gulp.src(folders.img)
-        .pipe(imagemin({verbose: true}))
+        // .pipe(imagemin({verbose: true}))
         .pipe(gulp.dest(folders.imgD));
 });
 
@@ -126,6 +126,9 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var reactify = require('reactify');
+var vueify = require('vueify')
+var babelify = require('babelify')
+
 
 
 // see : https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-with-globs.md
@@ -154,7 +157,8 @@ gulp.task('browserify', function () {
     var b = browserify({
       entries: entries,
       debug: true,
-      transform: [reactify]
+      transform: [vueify, babelify.configure({presets: ["es2015"]})]
+    //   transform: [reactify]
     });
 
     // pipe the Browserify stream into the stream we created earlier

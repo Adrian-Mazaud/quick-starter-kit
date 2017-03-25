@@ -68,7 +68,7 @@ gulp.task('before', ['images', 'data', 'fonts', 'sass', 'pug'], function(){});
 
 gulp.task('images', function(){
     return gulp.src(folders.images)
-        .pipe(imagemin({verbose: true}))
+        // .pipe(imagemin({verbose: true}))
         .pipe(gulp.dest(folders.imagesD));
 });
 
@@ -132,10 +132,14 @@ var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
 
+var babelify = require('babelify');
+var vueify = require('vueify');
+
 // add custom browserify options here
 var customOpts = {
     entries: [root+'/dev/app/app.js'],
-    debug: true
+    debug: true,
+    transform: [vueify, babelify.configure({presets: ["es2015"]})]
 };
 var opts = assign({}, watchify.args, customOpts);
 var b = watchify(browserify(opts));
