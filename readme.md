@@ -30,6 +30,7 @@ Utilisation de Karma avec Browserify, et avec comme navigateur PhantomJS et Chro
 * Sass (.sass) + Foundation
 * Browserify
 * Watchify
+* Babelify ( preset-es2015 )
 * Gulp
 * Gulp Connect
 * Imagemin
@@ -45,4 +46,3 @@ Utilisation de Karma avec Browserify, et avec comme navigateur PhantomJS et Chro
 
 #### A faire
 * Peut-être installer eslint *(y'a déjà le fichier de config mais ça m'ennuie un peu de rajouter une tonne de dépendances)*
-* Ajouter Babelify *(là pareil j'hésite car ça alourdit pas mal alors que j'utilises pas vraiment de l'es6 pour les clients)*

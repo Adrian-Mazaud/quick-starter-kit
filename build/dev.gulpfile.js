@@ -131,11 +131,13 @@ var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
+var babelify = require('babelify');
 
 // add custom browserify options here
 var customOpts = {
     entries: [root+'/dev/app/app.js'],
-    debug: true
+    debug: true,
+    transform: [babelify.configure({presets: ["es2015"]})]
 };
 var opts = assign({}, watchify.args, customOpts);
 var b = watchify(browserify(opts));

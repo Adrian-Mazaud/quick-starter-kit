@@ -125,7 +125,7 @@ var globby = require('globby');
 var through = require('through2');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
-var reactify = require('reactify');
+var babelify = require('babelify');
 
 
 // see : https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-with-globs.md
@@ -154,7 +154,7 @@ gulp.task('browserify', function () {
     var b = browserify({
       entries: entries,
       debug: true,
-      transform: [reactify]
+      transform: [babelify.configure({presets: ["es2015"]})]
     });
 
     // pipe the Browserify stream into the stream we created earlier
