@@ -125,7 +125,6 @@ var globby = require('globby');
 var through = require('through2');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
-var reactify = require('reactify');
 var vueify = require('vueify')
 var babelify = require('babelify')
 
